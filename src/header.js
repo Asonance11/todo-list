@@ -1,14 +1,14 @@
-import './header.css';
+// import './header.css';
 
-let headerCreation = function () {
-	let header = document.createElement('header');
-	let logo = document.createElement('h1');
+// let headerCreation = function () {
+// 	let header = document.createElement('header');
+// 	let logo = document.createElement('h1');
 
-	logo.textContent = 'WhatShouldIDo';
+// 	logo.textContent = 'WhatShouldIDo';
 
-	header.appendChild(logo);
+// 	header.appendChild(logo);
 
-	return header;
-};
+// 	return header;
+// };
 
-export default headerCreation;
+// export default headerCreation;
