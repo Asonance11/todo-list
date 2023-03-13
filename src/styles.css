@@ -47,8 +47,9 @@ header {
 	border-radius: 0.5rem;
 	outline: none;
 	background: var(--color-100);
+	cursor: pointer;
 }
-.project-form-container form {
+.project-form-container .project-form {
 	display: none;
 	gap: 0.3rem;
 }
