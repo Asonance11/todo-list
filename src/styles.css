@@ -40,11 +40,15 @@ header {
 	align-items: center;
 	gap: 1rem;
 }
-.sidebar button {
+.sidebar .add-project-button {
 	padding: 0.5rem 1rem;
 	font-size: 1rem;
 	border: none;
 	border-radius: 0.5rem;
 	outline: none;
 	background: var(--color-100);
+}
+.project-form-container form {
+	display: none;
+	gap: 0.3rem;
 }

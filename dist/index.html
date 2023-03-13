@@ -11,8 +11,21 @@
 	<body>
 		<section class="sidebar">
 			<h1>WhatShouldIdo</h1>
-			<button type="button" id="add-project-button">+ Add Project</button>
-			<div class="project-form-container"></div>
+			<button type="button" class="add-project-button" id="add-project-button">
+				+ Add Project
+			</button>
+			<div class="project-form-container">
+				<form action="" id="project-form">
+					<input
+						type="text"
+						name="project_name"
+						id="project-name"
+						placeholder="Project Name"
+						required
+					/>
+					<button type="submit">Submit</button>
+				</form>
+			</div>
 			<h2>All Projects</h2>
 			<div class="project-list"></div>
 		</section>
