@@ -18,6 +18,7 @@ function displayForm() {
 function handleProjectFormSubmit(e) {
 	e.preventDefault();
 
+	projectForm.style.display = 'none';
 	let projectFormInput = document.querySelector('#project-name');
 
 	// make new project and add to project keeper
@@ -26,6 +27,7 @@ function handleProjectFormSubmit(e) {
 
 	// UI
 	createProjectList();
+	projectForm.reset();
 }
 
 // function createProjectListItem(project) {
