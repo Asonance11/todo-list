@@ -23,3 +23,12 @@ export class ProjectKeeper {
 		);
 	}
 }
+
+export class ToDo {
+	constructor(name, isCompleted, priority, date) {
+		this.name = name;
+		this.priority = priority;
+		this.isCompleted = isCompleted;
+		this.date = date;
+	}
+}
