@@ -4,6 +4,10 @@ export class Project {
 		this.id = id;
 		this.tasks = [];
 	}
+
+	appendToDo(toDo) {
+		this.toDos.push(toDo);
+	}
 }
 
 export class ProjectKeeper {

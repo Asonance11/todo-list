@@ -78,7 +78,9 @@ function handleProjectClick() {
 	contentDiv.appendChild(contentHeader);
 	let addTaskButton = createAddTaskButton();
 	let deleteProjectButton = createDeleteProjectButton(currentproject);
-	addTaskButton.addEventListener('click', displayTodoForm);
+	addTaskButton.addEventListener('click', (e) =>
+		displayTodoForm(currentproject)
+	);
 	deleteProjectButton.addEventListener('click', (e) =>
 		handleDeleteProject(currentproject)
 	);
@@ -102,10 +104,55 @@ function handleDeleteProject(project) {
 	createProjectList();
 }
 
-// function rebuildProjectList () {
+// function createTodo(project) {
+// 	for (let i = 0; i < project.tasks.length; i++) {
+// 		const todoDiv = document.createElement('div');
+// 		const todoNameDiv = document.createElement('div');
+// 		const priorityDiv = document.createElement('div');
+// 		const isCompletedBtn = document.createElement('button');
+// 		const editBtn = document.createElement('div');
+// 		const deleteBtn = document.createElement('button');
 
+// 		todoNameDiv.textContent = allTasks[i].name;
+// 		priorityDiv.textContent = allTasks[i].priority;
+// 		// readBtn.textContent = allTasks[i].read;
+// 		editBtn.textContent = 'Edit';
+// 		deleteBtn.textContent = 'Delete';
+
+// 		todoNameDiv.classList.add('title');
+// 		priorityDiv.classList.add('priority');
+// 		isCompletedBtn.classList.add('iscomplete');
+// 		deleteBtn.classList.add('delete');
+// 		editBtn.classList.add('edit');
+// 		todoDiv.classList.add('todo');
+
+// 		if (allTasks[i].isCompleted) {
+// 			isCompletedBtn.textContent = 'Completed';
+// 			isCompletedBtn.style.backgroundColor = '#63da63';
+// 		} else {
+// 			isCompletedBtn.textContent = 'Not Completed';
+// 			isCompletedBtn.style.backgroundColor = '#e04f63';
+// 		}
+
+// 		isCompletedBtn.addEventListener('click', function () {
+// 			allTasks[i].isCompleted = !allTasks[i].isCompleted;
+// 			createTodo();
+// 		});
+
+// 		todoDiv.appendChild(todoNameDiv);
+// 		todoDiv.appendChild(priorityDiv);
+// 		todoDiv.appendChild(isCompletedBtn);
+// 		todoDiv.appendChild(editBtn);
+// 		todoDiv.appendChild(deleteBtn);
+
+// 		content.appendChild(todoDiv);
+// 	}
 // }
+
+function addTodotoProject() {}
+
 // event listeners
 
 addProjectBtn.addEventListener('click', displayForm);
 projectForm.addEventListener('submit', handleProjectFormSubmit);
+// taskForm.addEventListener('submit', createTodo(currentproject));
