@@ -1,11 +1,13 @@
 // imports
 import { Project, ProjectKeeper } from './classes';
+import { createAddTaskButton, createDeleteProjectButton } from './UIcreators';
 
 // global variables
-let content = document.getElementById('content');
+let contentDiv = document.getElementById('content');
 // let projectArray = [];
 let addProjectBtn = document.getElementById('add-project-button');
 let projectForm = document.getElementById('project-form');
+let currentproject;
 
 // functions
 function displayForm() {
@@ -54,9 +56,25 @@ function createProjectList() {
 		let listItem = document.createElement('li');
 		listItem.setAttribute('class', 'project-list-item');
 		listItem.textContent = project.name;
+		listItem.addEventListener('click', () => {
+			currentproject = project;
+			handleProjectClick();
+		});
 		projectList.appendChild(listItem);
 	});
 	projectListContainer.appendChild(projectList);
+}
+
+// haandle project click
+function handleProjectClick() {
+	contentDiv.textContent = '';
+	let contentHeader = document.createElement('div');
+	contentHeader.innerHTML = `<h2>${currentproject.name}</h2>`;
+	contentDiv.appendChild(contentHeader);
+	let addTaskButton = createAddTaskButton();
+	let deleteProjectButton = createDeleteProjectButton();
+	contentDiv.appendChild(addTaskButton);
+	contentDiv.appendChild(deleteProjectButton);
 }
 
 // event listeners
