@@ -1,12 +1,17 @@
 // imports
 import { Project, ProjectKeeper } from './classes';
-import { createAddTaskButton, createDeleteProjectButton } from './UIcreators';
+import {
+	createAddTaskButton,
+	createDeleteProjectButton,
+	createTodoForm,
+} from './UIcreators';
 
 // global variables
 let contentDiv = document.getElementById('content');
 // let projectArray = [];
 let addProjectBtn = document.getElementById('add-project-button');
 let projectForm = document.getElementById('project-form');
+let taskForm = createTodoForm();
 let currentproject;
 
 // functions
@@ -73,10 +78,19 @@ function handleProjectClick() {
 	contentDiv.appendChild(contentHeader);
 	let addTaskButton = createAddTaskButton();
 	let deleteProjectButton = createDeleteProjectButton();
+	addTaskButton.addEventListener('click', displayTodoForm);
 	contentDiv.appendChild(addTaskButton);
 	contentDiv.appendChild(deleteProjectButton);
 }
 
+function displayTodoForm() {
+	if (taskForm.style.display == 'flex') {
+		taskForm.style.display = 'none';
+	} else if ((taskForm.style.display = 'none')) {
+		taskForm.style.display = 'flex';
+		contentDiv.appendChild(taskForm);
+	}
+}
 // event listeners
 
 addProjectBtn.addEventListener('click', displayForm);
