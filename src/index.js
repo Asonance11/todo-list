@@ -61,7 +61,7 @@ function createProjectList() {
 		let listItem = document.createElement('li');
 		listItem.setAttribute('class', 'project-list-item');
 		listItem.textContent = project.name;
-		listItem.addEventListener('click', () => {
+		listItem.addEventListener('click', (e) => {
 			currentproject = project;
 			handleProjectClick();
 		});
@@ -77,8 +77,11 @@ function handleProjectClick() {
 	contentHeader.innerHTML = `<h2>${currentproject.name}</h2>`;
 	contentDiv.appendChild(contentHeader);
 	let addTaskButton = createAddTaskButton();
-	let deleteProjectButton = createDeleteProjectButton();
+	let deleteProjectButton = createDeleteProjectButton(currentproject);
 	addTaskButton.addEventListener('click', displayTodoForm);
+	deleteProjectButton.addEventListener('click', (e) =>
+		handleDeleteProject(currentproject)
+	);
 	contentDiv.appendChild(addTaskButton);
 	contentDiv.appendChild(deleteProjectButton);
 }
@@ -91,6 +94,17 @@ function displayTodoForm() {
 		contentDiv.appendChild(taskForm);
 	}
 }
+
+function handleDeleteProject(project) {
+	ProjectKeeper.deleteProject(project);
+	currentproject = undefined;
+	contentDiv.textContent = '';
+	createProjectList();
+}
+
+// function rebuildProjectList () {
+
+// }
 // event listeners
 
 addProjectBtn.addEventListener('click', displayForm);
