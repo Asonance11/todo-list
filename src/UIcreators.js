@@ -14,6 +14,7 @@ export function createDeleteProjectButton() {
 export function createTodoForm() {
 	let todoForm = document.createElement('form');
 	todoForm.setAttribute('class', 'todo-form');
+	todoForm.setAttribute('id', 'todo-form');
 	let todoName = document.createElement('input');
 	todoName.setAttribute('class', 'input');
 	todoName.setAttribute('type', 'text');
