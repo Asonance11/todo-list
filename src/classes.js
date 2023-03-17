@@ -5,8 +5,8 @@ export class Project {
 		this.tasks = [];
 	}
 
-	appendToDo(toDo) {
-		this.toDos.push(toDo);
+	appendToDo(task) {
+		this.tasks.push(task);
 	}
 }
 
@@ -30,7 +30,7 @@ export class ProjectKeeper {
 }
 
 export class ToDo {
-	constructor(name, isCompleted, priority, date) {
+	constructor(name, priority, isCompleted, date) {
 		this.name = name;
 		this.priority = priority;
 		this.isCompleted = isCompleted;

@@ -11,7 +11,7 @@ export function createDeleteProjectButton() {
 	return deleteProject;
 }
 
-export function createTodoForm(project) {
+export function createTodoForm() {
 	let todoForm = document.createElement('form');
 	todoForm.setAttribute('class', 'todo-form');
 	let todoName = document.createElement('input');
@@ -35,7 +35,7 @@ export function createTodoForm(project) {
 	let todoPriority = document.createElement('select');
 	todoPriority.setAttribute('name', 'priority');
 	todoPriority.setAttribute('class', 'input');
-	todoPriority.setAttribute('id', 'todo-prority');
+	todoPriority.setAttribute('id', 'todo-priority');
 	todoPriority.setAttribute('required', '');
 	todoPriority.innerHTML = `
 		<option value="" disabled selected hidden>Select Priority</option>

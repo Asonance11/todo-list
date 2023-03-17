@@ -1,5 +1,5 @@
 // imports
-import { Project, ProjectKeeper } from './classes';
+import { Project, ProjectKeeper, ToDo } from './classes';
 import {
 	createAddTaskButton,
 	createDeleteProjectButton,
@@ -94,6 +94,7 @@ function displayTodoForm() {
 	} else if ((taskForm.style.display = 'none')) {
 		taskForm.style.display = 'flex';
 		contentDiv.appendChild(taskForm);
+		console.log(currentproject);
 	}
 }
 
@@ -104,8 +105,20 @@ function handleDeleteProject(project) {
 	createProjectList();
 }
 
-// function createTodo(project) {
-// 	for (let i = 0; i < project.tasks.length; i++) {
+function addTodosToArray() {
+	const newTodo = new ToDo(
+		taskForm['todo-name'].value,
+		taskForm['todo-priority'].options[
+			taskForm['todo-priority'].selectedIndex
+		].value,
+		taskForm['todo-isCompleted'].checked,
+		taskForm['todo-date'].value
+	);
+	currentproject.appendToDo(newTodo);
+}
+
+// function createTodo() {
+// 	for (let i = 0; i < currentproject.tasks.length; i++) {
 // 		const todoDiv = document.createElement('div');
 // 		const todoNameDiv = document.createElement('div');
 // 		const priorityDiv = document.createElement('div');
@@ -149,10 +162,16 @@ function handleDeleteProject(project) {
 // 	}
 // }
 
-function addTodotoProject() {}
+// function addTodotoProject() {}
 
 // event listeners
 
 addProjectBtn.addEventListener('click', displayForm);
 projectForm.addEventListener('submit', handleProjectFormSubmit);
-// taskForm.addEventListener('submit', createTodo(currentproject));
+taskForm.addEventListener('submit', (e) => {
+	e.preventDefault();
+	taskForm.style.display = 'none';
+	taskForm.reset();
+	addTodosToArray();
+	console.log(currentproject);
+});
