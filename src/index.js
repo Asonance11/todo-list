@@ -154,7 +154,6 @@ function displayTodos() {
 		dueDateDiv.classList.add('due-date');
 		isCompletedBtn.classList.add('iscomplete');
 		deleteBtn.classList.add('delete');
-		editBtn.classList.add('edit');
 		todoDiv.classList.add('todo');
 
 		if (currentproject.tasks[i].isCompleted) {
@@ -180,7 +179,6 @@ function displayTodos() {
 		todoDiv.appendChild(priorityDiv);
 		todoDiv.appendChild(dueDateDiv);
 		todoDiv.appendChild(isCompletedBtn);
-		todoDiv.appendChild(editBtn);
 		todoDiv.appendChild(deleteBtn);
 
 		library.appendChild(todoDiv);
