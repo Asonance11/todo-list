@@ -168,7 +168,12 @@ function displayTodos() {
 		isCompletedBtn.addEventListener('click', function () {
 			currentproject.tasks[i].isCompleted =
 				!currentproject.tasks[i].isCompleted;
-			createTodo();
+			displayTodos();
+		});
+
+		deleteBtn.addEventListener('click', () => {
+			currentproject.tasks.splice(i, 1);
+			displayTodos();
 		});
 
 		todoDiv.appendChild(todoNameDiv);
