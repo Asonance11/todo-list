@@ -13,6 +13,7 @@ let addProjectBtn = document.getElementById('add-project-button');
 let projectForm = document.getElementById('project-form');
 let taskForm = createTodoForm();
 let currentproject;
+let library = document.createElement('div');
 
 // functions
 function displayForm() {
@@ -64,6 +65,7 @@ function createProjectList() {
 		listItem.addEventListener('click', (e) => {
 			currentproject = project;
 			handleProjectClick();
+			displayTodos();
 		});
 		projectList.appendChild(listItem);
 	});
@@ -78,9 +80,9 @@ function handleProjectClick() {
 	contentDiv.appendChild(contentHeader);
 	let addTaskButton = createAddTaskButton();
 	let deleteProjectButton = createDeleteProjectButton(currentproject);
-	addTaskButton.addEventListener('click', (e) =>
-		displayTodoForm(currentproject)
-	);
+	addTaskButton.addEventListener('click', (e) => {
+		displayTodoForm(currentproject);
+	});
 	deleteProjectButton.addEventListener('click', (e) =>
 		handleDeleteProject(currentproject)
 	);
@@ -129,53 +131,54 @@ function addTodosToArray() {
 	currentproject.appendToDo(newTodo);
 }
 
-// function createTodo() {
-// 	for (let i = 0; i < currentproject.tasks.length; i++) {
-// 		const todoDiv = document.createElement('div');
-// 		const todoNameDiv = document.createElement('div');
-// 		const priorityDiv = document.createElement('div');
-// 		const isCompletedBtn = document.createElement('button');
-// 		const editBtn = document.createElement('div');
-// 		const deleteBtn = document.createElement('button');
+function displayTodos() {
+	library.textContent = '';
+	for (let i = 0; i < currentproject.tasks.length; i++) {
+		const todoDiv = document.createElement('div');
+		const todoNameDiv = document.createElement('div');
+		const priorityDiv = document.createElement('div');
+		const isCompletedBtn = document.createElement('button');
+		const editBtn = document.createElement('button');
+		const deleteBtn = document.createElement('button');
 
-// 		todoNameDiv.textContent = currentproject.tasks[i].name;
-// 		priorityDiv.textContent = currentproject.tasks[i].priority;
-// 		// readBtn.textContent = currentproject.tasks[i].read;
-// 		editBtn.textContent = 'Edit';
-// 		deleteBtn.textContent = 'Delete';
+		todoNameDiv.textContent = currentproject.tasks[i].name;
+		priorityDiv.textContent = currentproject.tasks[i].priority;
+		// readBtn.textContent = currentproject.tasks[i].read;
+		editBtn.textContent = 'Edit';
+		deleteBtn.textContent = 'Delete';
 
-// 		todoNameDiv.classList.add('title');
-// 		priorityDiv.classList.add('priority');
-// 		isCompletedBtn.classList.add('iscomplete');
-// 		deleteBtn.classList.add('delete');
-// 		editBtn.classList.add('edit');
-// 		todoDiv.classList.add('todo');
+		todoNameDiv.classList.add('title');
+		priorityDiv.classList.add('priority');
+		isCompletedBtn.classList.add('iscomplete');
+		deleteBtn.classList.add('delete');
+		editBtn.classList.add('edit');
+		todoDiv.classList.add('todo');
 
-// 		if (currentproject.tasks[i].isCompleted) {
-// 			isCompletedBtn.textContent = 'Completed';
-// 			isCompletedBtn.style.backgroundColor = '#63da63';
-// 		} else {
-// 			isCompletedBtn.textContent = 'Not Completed';
-// 			isCompletedBtn.style.backgroundColor = '#e04f63';
-// 		}
+		if (currentproject.tasks[i].isCompleted) {
+			isCompletedBtn.textContent = 'Completed';
+			isCompletedBtn.style.backgroundColor = '#63da63';
+		} else {
+			isCompletedBtn.textContent = 'Not Completed';
+			isCompletedBtn.style.backgroundColor = '#e04f63';
+		}
 
-// 		isCompletedBtn.addEventListener('click', function () {
-// 			currentproject.tasks[i].isCompleted =
-// 				!currentproject.tasks[i].isCompleted;
-// 			createTodo();
-// 		});
+		isCompletedBtn.addEventListener('click', function () {
+			currentproject.tasks[i].isCompleted =
+				!currentproject.tasks[i].isCompleted;
+			createTodo();
+		});
 
-// 		todoDiv.appendChild(todoNameDiv);
-// 		todoDiv.appendChild(priorityDiv);
-// 		todoDiv.appendChild(isCompletedBtn);
-// 		todoDiv.appendChild(editBtn);
-// 		todoDiv.appendChild(deleteBtn);
+		todoDiv.appendChild(todoNameDiv);
+		todoDiv.appendChild(priorityDiv);
+		todoDiv.appendChild(isCompletedBtn);
+		todoDiv.appendChild(editBtn);
+		todoDiv.appendChild(deleteBtn);
 
-// 		content.appendChild(todoDiv);
-// 	}
-// }
+		library.appendChild(todoDiv);
+		contentDiv.appendChild(library);
+	}
+}
 
-//
 // event listeners
 
 addProjectBtn.addEventListener('click', displayForm);
@@ -185,6 +188,6 @@ taskForm.addEventListener('submit', (e) => {
 	taskForm.style.display = 'none';
 	addTodosToArray();
 	taskForm.reset();
-	// createTodo();
+	displayTodos();
 	console.log(currentproject);
 });
