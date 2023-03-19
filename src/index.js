@@ -137,18 +137,21 @@ function displayTodos() {
 		const todoDiv = document.createElement('div');
 		const todoNameDiv = document.createElement('div');
 		const priorityDiv = document.createElement('div');
+		const dueDateDiv = document.createElement('div');
 		const isCompletedBtn = document.createElement('button');
 		const editBtn = document.createElement('button');
 		const deleteBtn = document.createElement('button');
 
 		todoNameDiv.textContent = currentproject.tasks[i].name;
-		priorityDiv.textContent = currentproject.tasks[i].priority;
+		priorityDiv.textContent = ` Priority: ${currentproject.tasks[i].priority}`;
+		dueDateDiv.textContent = ` Due: ${currentproject.tasks[i].date}`;
 		// readBtn.textContent = currentproject.tasks[i].read;
 		editBtn.textContent = 'Edit';
 		deleteBtn.textContent = 'Delete';
 
 		todoNameDiv.classList.add('title');
 		priorityDiv.classList.add('priority');
+		dueDateDiv.classList.add('due-date');
 		isCompletedBtn.classList.add('iscomplete');
 		deleteBtn.classList.add('delete');
 		editBtn.classList.add('edit');
@@ -170,6 +173,7 @@ function displayTodos() {
 
 		todoDiv.appendChild(todoNameDiv);
 		todoDiv.appendChild(priorityDiv);
+		todoDiv.appendChild(dueDateDiv);
 		todoDiv.appendChild(isCompletedBtn);
 		todoDiv.appendChild(editBtn);
 		todoDiv.appendChild(deleteBtn);
