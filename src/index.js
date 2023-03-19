@@ -175,15 +175,7 @@ function addTodosToArray() {
 // 	}
 // }
 
-// function handleTodoFormSubmit(e) {
-// 	e.preventDefault();
-// 	taskForm.style.display = 'none';
-// 	taskForm.reset();
-// 	addTodosToArray();
-// 	// createTodo();
-// 	console.log(currentproject);
-// }
-
+//
 // event listeners
 
 addProjectBtn.addEventListener('click', displayForm);
@@ -191,8 +183,8 @@ projectForm.addEventListener('submit', handleProjectFormSubmit);
 taskForm.addEventListener('submit', (e) => {
 	e.preventDefault();
 	taskForm.style.display = 'none';
-	taskForm.reset();
 	addTodosToArray();
+	taskForm.reset();
 	// createTodo();
 	console.log(currentproject);
 });
