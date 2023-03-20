@@ -1,6 +1,6 @@
 // imports
 import { Project, ProjectKeeper, ToDo } from './classes';
-import { default as storageAvailable } from './localStorage';
+// import { default as storageAvailable } from './localStorage';
 import {
 	createAddTaskButton,
 	createDeleteProjectButton,
@@ -27,7 +27,7 @@ let storageProjects = [];
 // else {
 // }
 
-checkStorage();
+// checkStorage();
 
 // functions
 function displayForm() {
