@@ -15,6 +15,7 @@ let projectForm = document.getElementById('project-form');
 let taskForm = createTodoForm();
 let currentproject;
 let library = document.createElement('div');
+library.setAttribute('class', 'library');
 let allProjects = ProjectKeeper.getAllProjects();
 let storageProjects = [];
 
@@ -83,6 +84,7 @@ function displayProjectList() {
 function handleProjectClick() {
 	contentDiv.textContent = '';
 	let contentHeader = document.createElement('div');
+	contentHeader.setAttribute('class', 'content-header');
 	contentHeader.innerHTML = `<h2>${currentproject.name}</h2>`;
 	contentDiv.appendChild(contentHeader);
 	let addTaskButton = createAddTaskButton();
@@ -93,8 +95,8 @@ function handleProjectClick() {
 	deleteProjectButton.addEventListener('click', (e) =>
 		handleDeleteProject(currentproject)
 	);
-	contentDiv.appendChild(addTaskButton);
-	contentDiv.appendChild(deleteProjectButton);
+	contentHeader.appendChild(addTaskButton);
+	contentHeader.appendChild(deleteProjectButton);
 }
 
 function displayTodoForm() {
@@ -107,6 +109,7 @@ function displayTodoForm() {
 }
 
 function handleDeleteProject(project) {
+	localStorage.removeItem('myProject');
 	ProjectKeeper.deleteProject(project);
 	currentproject = undefined;
 	contentDiv.textContent = '';
