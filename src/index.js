@@ -1,5 +1,6 @@
 // imports
 import { Project, ProjectKeeper, ToDo } from './classes';
+import { default as storageAvailable } from './localStorage';
 import {
 	createAddTaskButton,
 	createDeleteProjectButton,
@@ -14,6 +15,18 @@ let projectForm = document.getElementById('project-form');
 let taskForm = createTodoForm();
 let currentproject;
 let library = document.createElement('div');
+let allProjects = ProjectKeeper.getAllProjects();
+let storageProjects = [];
+
+// if (storageAvailable('localStorage') && localStorage.getItem('myProjects')) {
+// 	const testProject = new Project('Test Project');
+// 	ProjectKeeper.addProject(testProject);
+// 	displayProjectFromStorage();
+// }
+// else {
+// }
+
+checkStorage();
 
 // functions
 function displayForm() {
@@ -23,26 +36,25 @@ function displayForm() {
 		projectForm.style.display = 'flex';
 	}
 }
-function handleProjectFormSubmit(e) {
-	e.preventDefault();
-
-	projectForm.style.display = 'none';
+function handleProjectFormSubmit() {
 	let projectFormInput = document.querySelector('#project-name');
 
 	// make new project and add to project keeper
+
 	const newProject = new Project(projectFormInput.value);
 	ProjectKeeper.addProject(newProject);
 
 	// UI
-	createProjectList();
+	displayProjectList();
+	projectForm.style.display = 'none';
 	projectForm.reset();
 }
 
-// function createProjectListItem(project) {
+// function displayProjectListItem(project) {
 
 // 	return listItem;
 // }
-function createProjectList() {
+function displayProjectList() {
 	const projectListContainer = document.querySelector(
 		'.project-list-container'
 	);
@@ -50,14 +62,9 @@ function createProjectList() {
 	const projectList = document.createElement('ul');
 	projectList.setAttribute('class', 'project-list');
 
-	let allProjects = ProjectKeeper.getAllProjects();
 	projectListContainer.textContent = '';
-	// for (let i = 0; i < allProjects.length; i++) {
-	// 	let listItem = document.createElement('li');
-	// 	listItem.setAttribute('class', 'project-list-item');
-	// 	listItem.textContent = allProjects[i].name;
-	// 	projectList.appendChild(listItem);
-	// }
+	// displayProjectsFromStorage();
+
 	allProjects.forEach((project) => {
 		let listItem = document.createElement('li');
 		listItem.setAttribute('class', 'project-list-item');
@@ -96,7 +103,6 @@ function displayTodoForm() {
 	} else if ((taskForm.style.display = 'none')) {
 		taskForm.style.display = 'flex';
 		contentDiv.appendChild(taskForm);
-		console.log(currentproject);
 	}
 }
 
@@ -104,7 +110,7 @@ function handleDeleteProject(project) {
 	ProjectKeeper.deleteProject(project);
 	currentproject = undefined;
 	contentDiv.textContent = '';
-	createProjectList();
+	displayProjectList();
 }
 
 function addTodosToArray() {
@@ -186,10 +192,40 @@ function displayTodos() {
 	}
 }
 
+function populateProjectStorage() {
+	localStorage.setItem('myProjects', JSON.stringify(allProjects));
+	displayProjectList();
+}
+function displayProjectFromStorage() {
+	storageProjects = JSON.parse(localStorage.getItem('myProjects'));
+	storageProjects.forEach((project) => {
+		const projectInStorage = new Project(project.name);
+		ProjectKeeper.addProject(projectInStorage);
+	});
+
+	displayProjectList();
+}
+
+function checkStorage() {
+	if (storageAvailable('localStorage') && localStorage.getItem('myProjects')) {
+		// storageProjects.forEach((project) => {
+		// ProjectKeeper.addProject(project);
+		displayProjectFromStorage();
+		// });
+	}
+}
+
 // event listeners
 
 addProjectBtn.addEventListener('click', displayForm);
-projectForm.addEventListener('submit', handleProjectFormSubmit);
+projectForm.addEventListener('submit', (e) => {
+	e.preventDefault();
+	handleProjectFormSubmit();
+	populateProjectStorage();
+	console.log(allProjects);
+	console.log(localStorage);
+	console.log(storageProjects);
+});
 taskForm.addEventListener('submit', (e) => {
 	e.preventDefault();
 	taskForm.style.display = 'none';
